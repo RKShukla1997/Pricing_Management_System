@@ -1,146 +1,413 @@
-# Retail Pricing Management System# Retail Pricing Management System# Retail Pricing Management System# Retail Pricing Management System# Product Service - CSV Upload API
+# Retail Pricing Management System# Retail Pricing Management System# Retail Pricing Management System# Retail Pricing Management System# Retail Pricing Management System# Retail Pricing Management System# Product Service - CSV Upload API
 
 
 
-A scalable multi-service platform for managing pricing data from 3000+ retail stores across multiple countries. Built with Angular, Go, and Python.
+A multi-service web application for managing pricing feeds from 3000+ retail stores. Built with Angular, Go, and Python.
 
 
 
----A scalable, multi-service web application for managing and analyzing pricing feeds from retail stores across multiple countries. The system enables upload, persistence, search, and modification of pricing data from 3000+ retail stores.
+---A multi-service web application for managing pricing feeds from 3000+ retail stores. Built with Angular, Go, and Python.
 
 
 
-## 📋 Table of Contents
+## Context Diagram
 
 
 
-- [Overview](#overview)---A scalable, multi-service web application for managing and analyzing pricing feeds from retail stores across multiple countries. The system enables upload, persistence, search, and modification of pricing data from 3000+ retail stores.
-
-- [Context Diagram](#context-diagram)
-
-- [Solution Architecture](#solution-architecture)
-
-- [Design Decisions](#design-decisions)
-
-- [Non-Functional Requirements](#non-functional-requirements)## 📋 Table of Contents
-
-- [Assumptions](#assumptions)
-
-- [Getting Started](#getting-started)
+The system allows retail store users to upload CSV files, search pricing data, and edit records through a modern web interface.---A scalable multi-service platform for managing pricing data from 3000+ retail stores across multiple countries. Built with Angular, Go, and Python.
 
 
 
----- [Overview](#overview)---A scalable, multi-service web application for managing and analyzing pricing feeds from retail stores across multiple countries. The system enables upload, persistence, search, and modification of pricing data from 3000+ retail stores.A microservice built with Go and the Gin web framework that provides an endpoint for uploading CSV files.
-
-
-
-## 🎯 Overview- [Context Diagram](#context-diagram)
-
-
-
-**Retail Pricing Management System** enables retail chains to:- [Solution Architecture](#solution-architecture)
-
-- Upload CSV pricing feeds (Store ID, SKU, Product Name, Price, Date)
-
-- Search and filter pricing records- [Technology Stack](#technology-stack)
-
-- Edit and update pricing data in real-time
-
-- [Design Decisions](#design-decisions)## 📋 Table of Contents
-
-**Technology Stack:**
-
-- **Frontend:** Angular 17+- [Non-Functional Requirements](#non-functional-requirements)
-
-- **Upload Service:** Go + Gin (This Repository)
-
-- **Data API:** Python + FastAPI- [Assumptions](#assumptions)
-
-- **Database:** PostgreSQL + Redis
-
-- **Storage:** S3 / Local FileSystem- [Getting Started](#getting-started)
-
-
-
----- [Source Implementation](#source-implementation)- [Overview](#overview)---## Features
-
-
-
-## 🗺️ Context Diagram
-
-
-
-```---- [Context Diagram](#context-diagram)
+```
 
                   ┌─────────────────────┐
 
-                  │  Retail Store User  │
+                  │  Retail Store User  │## Context Diagram
 
                   └──────────┬──────────┘
-
-                             │## 🎯 Overview- [Solution Architecture](#solution-architecture)
-
-                             ▼
-
-                  ┌─────────────────────┐
-
-                  │   Angular Web UI    │
-
-                  │  - Upload CSV       │This solution provides a comprehensive pricing management platform for retail chains operating 3000+ stores across multiple countries.- [Technology Stack](#technology-stack)
-
-                  │  - Search & Filter  │
-
-                  │  - Edit Records     │
-
-                  └──────────┬──────────┘
-
-                             │**Key Capabilities:**- [Functional Requirements](#functional-requirements)## 📋 Table of Contents- CSV file upload via HTTP POST
-
-                             ▼
-
-                  ┌─────────────────────┐- CSV pricing feed uploads from retail stores
-
-                  │  Backend Services   │
-
-                  │                     │- Persistent storage of pricing records (Store ID, SKU, Product Name, Price, Date)- [Non-Functional Requirements](#non-functional-requirements)
-
-                  │  ┌────────────────┐ │
-
-                  │  │ Python API     │ │- Advanced search and filter capabilities
-
-                  │  │ (FastAPI)      │ │
-
-                  │  └────────────────┘ │- Real-time editing and updates to pricing records- [Design Decisions](#design-decisions)- File size validation (max 10MB)
-
-                  │                     │
-
-                  │  ┌────────────────┐ │- Scalable architecture supporting multi-country operations
-
-                  │  │ Go Ingestion   │ │
-
-                  │  │ (Gin)          │ │- [Assumptions](#assumptions)
-
-                  │  └────────────────┘ │
-
-                  └──────────┬──────────┘**Technology Stack:**
 
                              │
 
-           ┌─────────────────┴─────────────────┐- **Frontend:** Angular (Single Page Application)- [Project Structure](#project-structure)- [Overview](#overview)- CSV format validation
+                             ▼
+
+                  ┌─────────────────────┐The system allows retail store users to upload CSV files, search pricing data, and edit records through a modern web interface.---A scalable, multi-service web application for managing and analyzing pricing feeds from retail stores across multiple countries. The system enables upload, persistence, search, and modification of pricing data from 3000+ retail stores.
+
+                  │   Angular Web UI    │
+
+                  │  - Upload CSV       │
+
+                  │  - Search & Filter  │
+
+                  │  - Edit Records     │```
+
+                  └──────────┬──────────┘
+
+                             │ REST APIs                  ┌─────────────────────┐
+
+                             ▼
+
+                  ┌─────────────────────┐                  │  Retail Store User  │## 📋 Table of Contents
+
+                  │  Backend Services   │
+
+                  │                     │                  └──────────┬──────────┘
+
+                  │  ┌────────────────┐ │
+
+                  │  │ Python API     │ │                             │
+
+                  │  │ (FastAPI)      │ │
+
+                  │  └────────────────┘ │                             ▼
+
+                  │                     │
+
+                  │  ┌────────────────┐ │                  ┌─────────────────────┐- [Overview](#overview)---A scalable, multi-service web application for managing and analyzing pricing feeds from retail stores across multiple countries. The system enables upload, persistence, search, and modification of pricing data from 3000+ retail stores.
+
+                  │  │ Go Ingestion   │ │
+
+                  │  │ (Gin)          │ │                  │   Angular Web UI    │
+
+                  │  └────────────────┘ │
+
+                  └──────────┬──────────┘                  │  - Upload CSV       │- [Context Diagram](#context-diagram)
+
+                             │
+
+           ┌─────────────────┴─────────────────┐                  │  - Search & Filter  │
 
            │                                   │
 
-           ▼                                   ▼- **Backend:** Go (Upload/Ingestion Service) + Python (Data API Service)
+           ▼                                   ▼                  │  - Edit Records     │- [Solution Architecture](#solution-architecture)
 
    ┌───────────────┐                  ┌───────────────┐
 
-   │  PostgreSQL   │                  │ S3 / Storage  │- **Database:** PostgreSQL (Primary) + Redis (Cache)- [Getting Started](#getting-started)
+   │  PostgreSQL   │                  │ S3 / Storage  │                  └──────────┬──────────┘
 
    │  - Records    │                  │ - CSV Files   │
 
-   │  - Audit Logs │                  │ - Archives    │- **Storage:** S3/Local FileSystem (CSV Files)
+   │  - Audit Logs │                  │ - Archives    │                             │ REST APIs- [Design Decisions](#design-decisions)
 
    └───────────────┘                  └───────────────┘
+
+```                             ▼
+
+
+
+**Key Components:**                  ┌─────────────────────┐- [Non-Functional Requirements](#non-functional-requirements)## 📋 Table of Contents
+
+- **Users:** Store managers, pricing analysts, administrators
+
+- **Frontend:** Single Page Application for all interactions                  │  Backend Services   │
+
+- **Backend:** Separate services for file processing (Go) and data operations (Python)
+
+- **Storage:** Relational database for records, object storage for files                  │                     │- [Assumptions](#assumptions)
+
+
+
+---                  │  ┌────────────────┐ │
+
+
+
+## Solution Architecture                  │  │ Python API     │ │- [Getting Started](#getting-started)
+
+
+
+The architecture uses an event-driven approach where file uploads are processed asynchronously.                  │  │ (FastAPI)      │ │
+
+
+
+```                  │  └────────────────┘ │
+
+                  ┌──────────────────┐
+
+                  │   Angular UI     │                  │                     │
+
+                  │  (Port: 4200)    │
+
+                  └────────┬─────────┘                  │  ┌────────────────┐ │---- [Overview](#overview)---A scalable, multi-service web application for managing and analyzing pricing feeds from retail stores across multiple countries. The system enables upload, persistence, search, and modification of pricing data from 3000+ retail stores.A microservice built with Go and the Gin web framework that provides an endpoint for uploading CSV files.
+
+                           │
+
+          ┌────────────────┴────────────────┐                  │  │ Go Ingestion   │ │
+
+          │                                 │
+
+          ▼                                 ▼                  │  │ (Gin)          │ │
+
+   ┌─────────────────┐             ┌──────────────────┐
+
+   │  Python API     │             │  Go Ingestion    │                  │  └────────────────┘ │
+
+   │  (Port: 8000)   │             │  (Port: 8080)    │
+
+   │                 │             │                  │                  └──────────┬──────────┘## 🎯 Overview- [Context Diagram](#context-diagram)
+
+   │ • Presigned URL │             │ • Event Listener │
+
+   │ • Search API    │             │ • CSV Validator  │                             │
+
+   │ • CRUD Ops      │             │ • Stream Parser  │
+
+   │ • Auth          │             │ • Batch Insert   │           ┌─────────────────┴─────────────────┐
+
+   └────────┬────────┘             └────────┬─────────┘
+
+            │                               │           │                                   │
+
+            │        ┌──────────────────────┘
+
+            │        │  Storage Event           ▼                                   ▼**Retail Pricing Management System** enables retail chains to:- [Solution Architecture](#solution-architecture)
+
+            │        │
+
+   ┌────────┴────────┴────────────────────────────────┐   ┌───────────────┐                  ┌───────────────┐
+
+   │                  DATA LAYER                       │
+
+   │                                                   │   │  PostgreSQL   │                  │ S3 / Storage  │- Upload CSV pricing feeds (Store ID, SKU, Product Name, Price, Date)
+
+   │  ┌────────────────┐         ┌─────────────────┐  │
+
+   │  │ S3 / Storage   │         │   PostgreSQL    │  │   │  - Records    │                  │ - CSV Files   │
+
+   │  │ • CSV Upload   │         │ • Records       │  │
+
+   │  │ • Event Trigger│         │ • Upload History│  │   │  - Audit Logs │                  │ - Archives    │- Search and filter pricing records- [Technology Stack](#technology-stack)
+
+   │  └────────────────┘         └─────────────────┘  │
+
+   │                                                   │   └───────────────┘                  └───────────────┘
+
+   │  ┌─────────────────┐                             │
+
+   │  │ Redis (Cache)   │                             │```- Edit and update pricing data in real-time
+
+   │  │ • Search Cache  │                             │
+
+   │  └─────────────────┘                             │
+
+   └───────────────────────────────────────────────────┘
+
+```**Key Components:**- [Design Decisions](#design-decisions)## 📋 Table of Contents
+
+
+
+**Architecture Highlights:**- **Users:** Store managers, pricing analysts, administrators
+
+
+
+1. **Python API Service (FastAPI)**- **Frontend:** Single Page Application for all interactions**Technology Stack:**
+
+   - Generates presigned URLs for direct S3 uploads
+
+   - Handles search queries with Redis caching- **Backend:** Separate services for file processing (Go) and data operations (Python)
+
+   - Manages CRUD operations with PostgreSQL
+
+   - Provides authentication and authorization- **Storage:** Relational database for records, object storage for files- **Frontend:** Angular 17+- [Non-Functional Requirements](#non-functional-requirements)
+
+
+
+2. **Go Ingestion Service (Gin)**
+
+   - Listens to S3 storage events
+
+   - Validates and parses CSV files using streaming---- **Upload Service:** Go + Gin (This Repository)
+
+   - Performs batch inserts to PostgreSQL
+
+   - Efficient concurrent processing with goroutines
+
+
+
+3. **Data Flow**## Solution Architecture- **Data API:** Python + FastAPI- [Assumptions](#assumptions)
+
+   - **Upload:** User → Angular → Python API (Presigned URL) → S3 → Storage Event → Go Service → PostgreSQL
+
+   - **Search:** User → Angular → Python API → Redis (Cache) → PostgreSQL
+
+   - **Edit:** User → Angular → Python API → PostgreSQL (Transaction) → Audit Log
+
+The architecture uses an event-driven approach where file uploads are processed asynchronously.- **Database:** PostgreSQL + Redis
+
+**Key Design Decisions:**
+
+- **Event-Driven:** Decouples upload from processing for better scalability
+
+- **Direct S3 Upload:** Reduces backend load and improves upload performance
+
+- **Streaming Parser:** Handles large CSV files efficiently without loading into memory```- **Storage:** S3 / Local FileSystem- [Getting Started](#getting-started)
+
+- **Batch Inserts:** Optimizes database performance (1000 records per batch)
+
+- **Microservices:** Go excels at I/O operations; Python excels at data manipulation                  ┌──────────────────┐
+
+
+                  │   Angular UI     │
+
+                  │  (Port: 4200)    │
+
+                  └────────┬─────────┘---- [Source Implementation](#source-implementation)- [Overview](#overview)---## Features
+
+                           │
+
+          ┌────────────────┴────────────────┐
+
+          │                                 │
+
+          ▼                                 ▼## 🗺️ Context Diagram
+
+   ┌─────────────────┐             ┌──────────────────┐
+
+   │  Python API     │             │  Go Ingestion    │
+
+   │  (Port: 8000)   │             │  (Port: 8080)    │
+
+   │                 │             │                  │```---- [Context Diagram](#context-diagram)
+
+   │ • Presigned URL │             │ • Event Listener │
+
+   │ • Search API    │             │ • CSV Validator  │                  ┌─────────────────────┐
+
+   │ • CRUD Ops      │             │ • Stream Parser  │
+
+   │ • Auth          │             │ • Batch Insert   │                  │  Retail Store User  │
+
+   └────────┬────────┘             └────────┬─────────┘
+
+            │                               │                  └──────────┬──────────┘
+
+            │        ┌──────────────────────┘
+
+            │        │  Storage Event                             │## 🎯 Overview- [Solution Architecture](#solution-architecture)
+
+            │        │
+
+   ┌────────┴────────┴────────────────────────────────┐                             ▼
+
+   │                  DATA LAYER                       │
+
+   │                                                   │                  ┌─────────────────────┐
+
+   │  ┌────────────────┐         ┌─────────────────┐  │
+
+   │  │ S3 / Storage   │         │   PostgreSQL    │  │                  │   Angular Web UI    │
+
+   │  │ • CSV Upload   │         │ • Records       │  │
+
+   │  │ • Event Trigger│         │ • Upload History│  │                  │  - Upload CSV       │This solution provides a comprehensive pricing management platform for retail chains operating 3000+ stores across multiple countries.- [Technology Stack](#technology-stack)
+
+   │  └────────────────┘         └─────────────────┘  │
+
+   │                                                   │                  │  - Search & Filter  │
+
+   │  ┌─────────────────┐                             │
+
+   │  │ Redis (Cache)   │                             │                  │  - Edit Records     │
+
+   │  │ • Search Cache  │                             │
+
+   │  └─────────────────┘                             │                  └──────────┬──────────┘
+
+   └───────────────────────────────────────────────────┘
+
+```                             │**Key Capabilities:**- [Functional Requirements](#functional-requirements)## 📋 Table of Contents- CSV file upload via HTTP POST
+
+
+
+**Architecture Highlights:**                             ▼
+
+
+
+1. **Python API Service (FastAPI)**                  ┌─────────────────────┐- CSV pricing feed uploads from retail stores
+
+   - Generates presigned URLs for direct S3 uploads
+
+   - Handles search queries with Redis caching                  │  Backend Services   │
+
+   - Manages CRUD operations with PostgreSQL
+
+   - Provides authentication and authorization                  │                     │- Persistent storage of pricing records (Store ID, SKU, Product Name, Price, Date)- [Non-Functional Requirements](#non-functional-requirements)
+
+
+
+2. **Go Ingestion Service (Gin)**                  │  ┌────────────────┐ │
+
+   - Listens to S3 storage events
+
+   - Validates and parses CSV files using streaming                  │  │ Python API     │ │- Advanced search and filter capabilities
+
+   - Performs batch inserts to PostgreSQL
+
+   - Efficient concurrent processing with goroutines                  │  │ (FastAPI)      │ │
+
+
+
+3. **Data Flow**                  │  └────────────────┘ │- Real-time editing and updates to pricing records- [Design Decisions](#design-decisions)- File size validation (max 10MB)
+
+   - **Upload:** User → Angular → Python API (Presigned URL) → S3 → Storage Event → Go Service → PostgreSQL
+
+   - **Search:** User → Angular → Python API → Redis (Cache) → PostgreSQL                  │                     │
+
+   - **Edit:** User → Angular → Python API → PostgreSQL (Transaction) → Audit Log
+
+                  │  ┌────────────────┐ │- Scalable architecture supporting multi-country operations
+
+**Key Design Decisions:**
+
+- **Event-Driven:** Decouples upload from processing for better scalability                  │  │ Go Ingestion   │ │
+
+- **Direct S3 Upload:** Reduces backend load and improves upload performance
+
+- **Streaming Parser:** Handles large CSV files efficiently without loading into memory                  │  │ (Gin)          │ │- [Assumptions](#assumptions)
+
+- **Batch Inserts:** Optimizes database performance (1000 records per batch)
+
+- **Microservices:** Go excels at I/O operations; Python excels at data manipulation                  │  └────────────────┘ │
+
+
+
+---                  └──────────┬──────────┘**Technology Stack:**
+
+
+
+## Quick Start                             │
+
+
+
+```powershell           ┌─────────────────┴─────────────────┐- **Frontend:** Angular (Single Page Application)- [Project Structure](#project-structure)- [Overview](#overview)- CSV format validation
+
+# Start all services with Docker Compose
+
+docker-compose up -d           │                                   │
+
+
+
+# Access applications           ▼                                   ▼- **Backend:** Go (Upload/Ingestion Service) + Python (Data API Service)
+
+# - Frontend: http://localhost:4200
+
+# - Python API: http://localhost:8000   ┌───────────────┐                  ┌───────────────┐
+
+# - Go Service: http://localhost:8080
+
+```   │  PostgreSQL   │                  │ S3 / Storage  │- **Database:** PostgreSQL (Primary) + Redis (Cache)- [Getting Started](#getting-started)
+
+
+
+---   │  - Records    │                  │ - CSV Files   │
+
+
+
+## Repository   │  - Audit Logs │                  │ - Archives    │- **Storage:** S3/Local FileSystem (CSV Files)
+
+
+
+**Project:** [Pricing_Management_System](https://github.com/RKShukla1997/Pricing_Management_System)     └───────────────┘                  └───────────────┘
+
+**Last Updated:** February 17, 2026
 
 ```- [API Documentation](#api-documentation)- [Context Diagram](#context-diagram)- File type validation (only .csv files)
 
