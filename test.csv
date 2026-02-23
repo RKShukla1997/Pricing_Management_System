@@ -1,4 +1,25 @@
-﻿name,email,age
-John Doe,john@example.com,30
-Jane Smith,jane@example.com,25
-Bob Johnson,bob@example.com,35
+﻿Store ID,SKU,Product Name,Price,Datename,email,age
+
+ST001,SKU-001,Milk 1L,3.99,2024-01-15John Doe,john@example.com,30
+
+ST001,SKU-002,Bread Whole Wheat,2.49,2024-01-15Jane Smith,jane@example.com,25
+
+ST001,SKU-003,Eggs Dozen,4.99,2024-01-15Bob Johnson,bob@example.com,35
+
+ST001,SKU-004,Butter 500g,5.99,2024-01-15
+ST001,SKU-005,Cheese Cheddar 250g,6.49,2024-01-15
+ST002,SKU-001,Milk 1L,3.89,2024-01-15
+ST002,SKU-002,Bread Whole Wheat,2.39,2024-01-15
+ST002,SKU-006,Orange Juice 1L,4.49,2024-01-15
+ST002,SKU-007,Yogurt Greek 500g,5.29,2024-01-15
+ST002,SKU-008,Chicken Breast 1kg,12.99,2024-01-15
+ST003,SKU-001,Milk 1L,4.09,2024-01-16
+ST003,SKU-003,Eggs Dozen,5.49,2024-01-16
+ST003,SKU-009,Tomatoes 1kg,3.99,2024-01-16
+ST003,SKU-010,Potatoes 2kg,4.99,2024-01-16
+ST003,SKU-011,Onions 1kg,2.99,2024-01-16
+ST001,SKU-012,Apples Red 1kg,5.99,2024-01-17
+ST001,SKU-013,Bananas 1kg,2.99,2024-01-17
+ST001,SKU-014,Oranges 1kg,4.49,2024-01-17
+ST002,SKU-012,Apples Red 1kg,5.89,2024-01-17
+ST002,SKU-015,Grapes Green 500g,6.99,2024-01-17
