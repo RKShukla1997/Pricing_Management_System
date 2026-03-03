@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 from typing import List
+import os
 
 
 class Settings(BaseSettings):
@@ -14,8 +15,8 @@ class Settings(BaseSettings):
     S3_BUCKET_NAME: str = "pricing-csv-uploads"
     PRESIGNED_URL_EXPIRATION: int = 3600  # 1 hour
     
-    # Database
-    DATABASE_URL: str = "sqlite:///./pricing.db"
+    # Database - Use shared database with Go service
+    DATABASE_URL: str = "sqlite:///C:/Workspace/Personal_Project/golang-project-product-service/pricing.db"
     
     # Redis
     REDIS_HOST: str = "localhost"

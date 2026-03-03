@@ -27,7 +27,7 @@ func (h *HealthHandler) HandleHealth(c *gin.Context) {
 	response := models.HealthResponse{
 		Status:    "healthy",
 		Timestamp: time.Now().Format(time.RFC3339),
-		Database:  "connected (in-memory)",
+		Database:  "connected (SQLite)",
 	}
 
 	c.JSON(http.StatusOK, gin.H{
