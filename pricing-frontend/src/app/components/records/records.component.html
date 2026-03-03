@@ -1,0 +1,194 @@
+<div class="records-container">
+  <div class="header">
+    <h1>Pricing Records</h1>
+    <button class="upload-btn" (click)="goToUpload()">
+      ⬆️ Upload CSV
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-box">
+    <h3>🔍 Search & Filter</h3>
+    <div class="filters-grid">
+      <input
+        type="text"
+        [(ngModel)]="filters.store_id"
+        placeholder="Store ID"
+        class="filter-input">
+
+      <input
+        type="text"
+        [(ngModel)]="filters.sku"
+        placeholder="SKU"
+        class="filter-input">
+
+      <input
+        type="text"
+        [(ngModel)]="filters.product_name"
+        placeholder="Product Name"
+        class="filter-input">
+
+      <input
+        type="number"
+        [(ngModel)]="filters.min_price"
+        placeholder="Min Price"
+        class="filter-input">
+
+      <input
+        type="number"
+        [(ngModel)]="filters.max_price"
+        placeholder="Max Price"
+        class="filter-input">
+
+      <input
+        type="date"
+        [(ngModel)]="filters.start_date"
+        placeholder="Start Date"
+        class="filter-input">
+
+      <input
+        type="date"
+        [(ngModel)]="filters.end_date"
+        placeholder="End Date"
+        class="filter-input">
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn btn-primary" (click)="applyFilters()">Apply Filters</button>
+      <button class="btn btn-secondary" (click)="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-error">
+    <span class="icon">❌</span>
+    <span>{{ error }}</span>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner-large"></div>
+    <p>Loading records...</p>
+  </div>
+
+  <!-- Records Table -->
+  <div *ngIf="!loading && records.length > 0" class="table-container">
+    <div class="table-info">
+      <p>Showing {{ records.length }} of {{ totalRecords }} records (Page {{ currentPage }} of {{ totalPages }})</p>
+    </div>
+
+    <table class="records-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Store ID</th>
+          <th>SKU</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of records">
+          <!-- Normal View -->
+          <ng-container *ngIf="editingRecord?.id !== record.id">
+            <td>{{ record.id }}</td>
+            <td>{{ record.store_id }}</td>
+            <td>{{ record.sku }}</td>
+            <td>{{ record.product_name }}</td>
+            <td>${{ record.price }}</td>
+            <td>{{ record.date }}</td>
+            <td class="actions-cell">
+              <button class="btn-icon btn-edit" (click)="editRecord(record)" title="Edit">
+                ✏️
+              </button>
+              <button class="btn-icon btn-delete" (click)="deleteRecord(record)" title="Delete">
+                🗑️
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- Edit View -->
+          <ng-container *ngIf="editingRecord?.id === record.id">
+            <td>{{ record.id }}</td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="editForm.store_id"
+                class="edit-input">
+            </td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="editForm.sku"
+                class="edit-input">
+            </td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="editForm.product_name"
+                class="edit-input">
+            </td>
+            <td>
+              <input
+                type="number"
+                [(ngModel)]="editForm.price"
+                step="0.01"
+                class="edit-input">
+            </td>
+            <td>
+              <input
+                type="date"
+                [(ngModel)]="editForm.date"
+                class="edit-input">
+            </td>
+            <td class="actions-cell">
+              <button class="btn-icon btn-save" (click)="saveEdit()" title="Save">
+                ✅
+              </button>
+              <button class="btn-icon btn-cancel" (click)="cancelEdit()" title="Cancel">
+                ❌
+              </button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button
+        class="btn-page"
+        (click)="previousPage()"
+        [disabled]="currentPage === 1">
+        ← Previous
+      </button>
+
+      <button
+        *ngFor="let page of getPageNumbers()"
+        class="btn-page"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+
+      <button
+        class="btn-page"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages">
+        Next →
+      </button>
+    </div>
+  </div>
+
+  <!-- No Records -->
+  <div *ngIf="!loading && records.length === 0" class="no-records">
+    <div class="icon">📭</div>
+    <h3>No Records Found</h3>
+    <p>Try adjusting your filters or upload a CSV file to get started.</p>
+    <button class="btn btn-primary" (click)="goToUpload()">
+      Upload CSV File
+    </button>
+  </div>
+</div>

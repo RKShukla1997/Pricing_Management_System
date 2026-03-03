@@ -1,0 +1,264 @@
+.upload-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Method Selector */
+.method-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.method-btn {
+  flex: 1;
+  max-width: 300px;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.method-btn:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.method-btn.active {
+  border-color: #007bff;
+  background: #007bff;
+  color: white;
+}
+
+.method-btn .icon {
+  font-size: 1.5rem;
+}
+
+/* Upload Box */
+.upload-box {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.file-input-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.file-input-wrapper input[type="file"] {
+  display: none;
+}
+
+.file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #f8f9fa;
+}
+
+.file-label:hover {
+  border-color: #007bff;
+  background: #e7f3ff;
+}
+
+.file-label .icon {
+  font-size: 2rem;
+}
+
+.filename {
+  color: #007bff;
+  font-weight: 500;
+}
+
+.upload-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.upload-btn:hover:not(:disabled) {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.upload-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Alerts */
+.alert {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.alert-error {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.alert .icon {
+  font-size: 1.5rem;
+}
+
+/* Info Box */
+.info-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.info-box h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.info-box ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.info-box li {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.csv-example {
+  background: white;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Actions */
+.actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.view-records-btn {
+  padding: 0.75rem 2rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.view-records-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .upload-container {
+    padding: 1rem;
+  }
+
+  .method-selector {
+    flex-direction: column;
+  }
+
+  .method-btn {
+    max-width: 100%;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+}
